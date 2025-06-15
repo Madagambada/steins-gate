@@ -70,10 +70,10 @@ target_link_libraries(steins-gate
     ${PANGOCAIRO_LIBRARIES}
     ${SDL2_LIBRARIES}
     ${libpng_LIBRARIES}
-    ${GLEW_LIBRARY}
+    ${GLEW_LIBRARIES}
+    -lGL
     ${GSTREAMER_LIBRARIES} ${GSTREAMER_APP_LIBRARIES} ${GSTREAMER_VIDEO_LIBRARIES}
     npengine npa
-    -lGL
 )
 
 # install target
