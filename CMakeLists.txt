@@ -3,8 +3,6 @@ cmake_minimum_required(VERSION 3.30)
 # add modules
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules")
 
-set(BUILD_SHARED_LIBS OFF)
-set(CMAKE_EXE_LINKER_FLAGS "-static")
 set(Boost_USE_STATIC_LIBS ON)
 
 # set version
