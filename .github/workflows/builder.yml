@@ -1,0 +1,90 @@
+name: libnpengine builder
+run-name: Build ${{ github.ref_name }}
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - 'sg-*'
+  
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: jirutka/setup-alpine@v1
+      with:
+        branch: edge
+        packages: >
+          boost-dev
+          make
+          cmake
+          clang
+          flex-dev
+          git
+          icu-data-full
+          bison
+          doas
+          glew-dev
+          jpeg-dev
+          gstreamer-dev
+          gst-plugins-base-dev
+          libpng-dev
+          sdl2-dev
+          pango-dev
+          cairo-dev
+
+    - name: build libnpa
+      run: |
+        git clone https://github.com/Madagambada/libnpa.git
+        cd libnpa
+        echo "::group::Configure"
+        mkdir build
+        cd build
+        export CXX=clang++
+        export CC=clang
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+        echo "::endgroup::"
+        echo "::group::Build"
+        make -j4
+        echo "::endgroup::"
+        doas make install
+      shell: alpine.sh {0}
+
+    - name: build libnpengine
+      run: |
+        git clone https://github.com/Madagambada/libnpengine.git -b libnpengine-0.5.3
+        echo "::group::Configure"
+        mkdir build
+        cd build
+        export CXX=clang++
+        export CC=clang
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+        echo "::endgroup::"
+        echo "::group::Build"
+        make -j4
+        echo "::endgroup::"
+        doas make install
+      shell: alpine.sh {0}
+
+    - name: build sg
+      run: |
+        echo "::group::Configure"
+        mkdir build
+        cd build
+        export CXX=clang++
+        export CC=clang
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+        echo "::endgroup::"
+        echo "::group::Build"
+        make -j4
+        echo "::endgroup::"
+        doas make install
+        doas cpack
+      shell: alpine.sh {0}
