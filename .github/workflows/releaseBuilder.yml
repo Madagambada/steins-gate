@@ -4,7 +4,7 @@ run-name: Build ${{ github.ref_name }}
 on:
   push:
     tags:
-      - 'sg-*'
+      - 'steins-gate-*'
   
 permissions:
   contents: write
