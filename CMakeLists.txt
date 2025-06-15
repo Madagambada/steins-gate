@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.30)
 # add modules
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules")
 
+set(BUILD_SHARED_LIBS OFF)
+set(CMAKE_EXE_LINKER_FLAGS "-static")
+
 # set version
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "5")
@@ -28,11 +31,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2 -ljpeg")
 configure_file(${PROJECT_SOURCE_DIR}/src/version.hpp.in
     ${PROJECT_SOURCE_DIR}/src/version.hpp)
 
-find_package(NPA REQUIRED)
-find_package(NPENGINE REQUIRED)
-find_package(GLEW REQUIRED)
-find_package(GStreamer REQUIRED)
-find_package(Boost REQUIRED COMPONENTS program_options)
+find_package(NPA REQUIRED STATIC)
+find_package(NPENGINE REQUIRED STATIC)
+find_package(GLEW REQUIRED STATIC)
+find_package(GStreamer REQUIRED STATIC)
+find_package(Boost REQUIRED COMPONENTS program_options STATIC)
 include(FindPkgConfig)
 
 PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
