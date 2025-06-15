@@ -23,6 +23,7 @@ jobs:
         branch: edge
         packages: >
           boost-dev
+          boost1.84-static
           make
           cmake
           clang
