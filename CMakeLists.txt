@@ -73,6 +73,7 @@ target_link_libraries(steins-gate
     ${GLEW_LIBRARY}
     ${GSTREAMER_LIBRARIES} ${GSTREAMER_APP_LIBRARIES} ${GSTREAMER_VIDEO_LIBRARIES}
     npengine npa
+    -lGL
 )
 
 # install target
