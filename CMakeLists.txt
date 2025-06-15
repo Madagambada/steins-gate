@@ -30,7 +30,9 @@ configure_file(${PROJECT_SOURCE_DIR}/src/version.hpp.in
 
 find_package(NPA REQUIRED)
 find_package(NPENGINE REQUIRED)
-find_package(GLEW REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GLEW REQUIRED glew)
+find_package(OpenGL REQUIRED)
 find_package(GStreamer REQUIRED)
 find_package(Boost REQUIRED COMPONENTS program_options)
 include(FindPkgConfig)
@@ -71,7 +73,7 @@ target_link_libraries(steins-gate
     ${SDL2_LIBRARIES}
     ${libpng_LIBRARIES}
     ${GLEW_LIBRARIES}
-    -lGL
+    OpenGL::GL
     ${GSTREAMER_LIBRARIES} ${GSTREAMER_APP_LIBRARIES} ${GSTREAMER_VIDEO_LIBRARIES}
     npengine npa
 )

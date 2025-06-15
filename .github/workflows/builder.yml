@@ -39,6 +39,8 @@ jobs:
           sdl2-dev
           pango-dev
           cairo-dev
+          pkgconf
+          mesa-dev
 
     - name: build libnpa
       run: |
