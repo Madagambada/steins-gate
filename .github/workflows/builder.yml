@@ -60,6 +60,7 @@ jobs:
     - name: build libnpengine
       run: |
         git clone https://github.com/Madagambada/libnpengine.git -b libnpengine-0.5.3
+        cd libnpengine
         echo "::group::Configure"
         mkdir build
         cd build
