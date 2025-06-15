@@ -30,13 +30,17 @@ jobs:
           bison
           doas
           glew-dev
+          glib-static
           jpeg-dev
           gstreamer-dev
           gst-plugins-base-dev
           libpng-dev
+          libpng-static
           sdl2-dev
           pango-dev
           cairo-dev
+          cairo-static
+          harfbuzz-static
 
     - name: build libnpa
       run: |
