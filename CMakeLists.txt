@@ -3,8 +3,6 @@ cmake_minimum_required(VERSION 3.30)
 # add modules
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules")
 
-set(Boost_USE_STATIC_LIBS ON)
-
 # set version
 set(VERSION_MAJOR "0")
 set(VERSION_MINOR "5")
