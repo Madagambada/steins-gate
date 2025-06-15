@@ -34,6 +34,7 @@ jobs:
           doas
           glew-dev
           jpeg-dev
+          libjpeg-turbo-static
           gstreamer-dev
           gst-plugins-base-dev
           libpng-dev
