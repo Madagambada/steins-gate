@@ -1,5 +1,5 @@
 name: libnpengine builder
-run-name: Build ${{ github.ref_name }}
+run-name: Release Build ${{ github.ref_name }}
 
 on:
   push:
