@@ -21,17 +21,23 @@ jobs:
         branch: edge
         packages: >
           boost-dev
+          boost1.84-static
           make
           cmake
           clang
           git
+          icu-data-full
+          bison
+          doas
+          glew-dev
+          jpeg-dev
+          libjpeg-turbo-static
+          gstreamer-dev
+          gst-plugins-base-dev
           libpng-dev
-          libpng-static
           sdl2-dev
           pango-dev
           cairo-dev
-          cairo-static
-          harfbuzz-static
 
     - name: install apk
       run: |
