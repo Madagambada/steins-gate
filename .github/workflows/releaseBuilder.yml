@@ -24,16 +24,7 @@ jobs:
           make
           cmake
           clang
-          flex-dev
           git
-          icu-data-full
-          bison
-          doas
-          glew-dev
-          glib-static
-          jpeg-dev
-          gstreamer-dev
-          gst-plugins-base-dev
           libpng-dev
           libpng-static
           sdl2-dev
@@ -42,39 +33,14 @@ jobs:
           cairo-static
           harfbuzz-static
 
-    - name: build libnpa
+    - name: install apk
       run: |
-        git clone https://github.com/Madagambada/libnpa.git
-        cd libnpa
-        echo "::group::Configure"
-        mkdir build
-        cd build
-        export CXX=clang++
-        export CC=clang
-        cmake -DCMAKE_BUILD_TYPE=Release ..
-        echo "::endgroup::"
-        echo "::group::Build"
-        make -j4
-        echo "::endgroup::"
-        doas make install
-      shell: alpine.sh {0}
-
-    - name: build libnpengine
-      run: |
-        git clone https://github.com/Madagambada/libnpengine.git
-        cd libnpengine
-        echo "::group::Configure"
-        mkdir build
-        cd build
-        export CXX=clang++
-        export CC=clang
-        cmake -DCMAKE_BUILD_TYPE=Release ..
-        echo "::endgroup::"
-        echo "::group::Build"
-        make -j4
-        echo "::endgroup::"
-        doas make install
-      shell: alpine.sh {0}
+        wget https://github.com/Madagambada/libnpa/releases/download/libnpa-0.5.3/libnpa-0.5.3-r0.apk
+        wget https://github.com/Madagambada/libnpa/releases/download/libnpa-0.5.3/libnpa-dev-0.5.3-r0.apk
+        wget https://github.com/Madagambada/libnpengine/releases/download/libnpengine-0.5.3/libnpengine-0.5.3-r0.apk
+        wget https://github.com/Madagambada/libnpengine/releases/download/libnpengine-0.5.3/libnpengine-dev-0.5.3-r0.apk
+        apk add --allow-untrusted libnpa-0.5.3-r0.apk libnpa-dev-0.5.3-r0.apk libnpengine-0.5.3-r0.apk libnpengine-dev-0.5.3-r0.apk
+      shell: alpine.sh --root {0}
 
     - name: build sg
       run: |
